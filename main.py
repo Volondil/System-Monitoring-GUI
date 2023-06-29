@@ -15,7 +15,7 @@
  # You should have received a copy of the GNU General Public License
  # along with nvtop.  If not, see <http://www.gnu.org/licenses/>.
 
-VER_MAJOR = '2022.09.4'
+VER_MAJOR = '2023.06.1'
 VER_MINOR = 'Alpha'
 REVISION = '1'
 VERSION_INFO = (VER_MAJOR, VER_MINOR, REVISION)
