@@ -1,4 +1,4 @@
- # Copyright (C) 2021-2022 Rabouteau Yoan <rabouteau.yoan@outlook.fr>
+ # Copyright (C) 2021-2023 Rabouteau Yoan <rabouteau.yoan@outlook.fr>
  #
  # This file is part of System Monitoring.
  #
