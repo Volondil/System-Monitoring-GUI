@@ -132,6 +132,3 @@ def getGPUTemp(path):
     except Exception as e:
         crashLog(f'{e} : getGPUTemp() call (functions.py)')
     return temp
-
-def getGPUFansMode(path):
-    return int(manipulateFile(path, 'r')) == 1
