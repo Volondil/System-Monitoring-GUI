@@ -20,3 +20,29 @@ VER_MINOR = 'Alpha'
 REVISION = '1'
 VERSION_INFO = (VER_MAJOR, VER_MINOR, REVISION)
 VERSION = '.'.join(str(c) for c in VERSION_INFO)
+TITLE_WINDOW = f'Modpack Updater v{VERSION}'
+
+from kivy.config import Config
+Config.set('graphics', 'resizable', True)
+Config.set('graphics', 'width', '1024')
+Config.set('graphics', 'height', '768')
+
+import kivy
+kivy.require('2.2.1')
+from kivy.app import App
+
+from kivy.core.window import Window 
+from kivy.uix.floatlayout import FloatLayout
+
+class MainFrame(FloatLayout):
+    def __init__(self, **kwargs):
+        super(MainFrame, self).__init__(**kwargs)
+
+class SystemMonitoring(App):
+    
+    def build(self):
+        self.title = TITLE_WINDOW
+        self.VERSION = VERSION
+
+if __name__ == '__main__':
+    SystemMonitoring().run()
