@@ -20,7 +20,7 @@ VER_MINOR = 'Alpha'
 REVISION = '1'
 VERSION_INFO = (VER_MAJOR, VER_MINOR, REVISION)
 VERSION = '.'.join(str(c) for c in VERSION_INFO)
-TITLE_WINDOW = f'Modpack Updater v{VERSION}'
+TITLE_WINDOW = f'System Monitoring v{VERSION}'
 
 from kivy.config import Config
 Config.set('graphics', 'resizable', True)
