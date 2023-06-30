@@ -14,3 +14,16 @@
  #
  # You should have received a copy of the GNU General Public License
  # along with nvtop.  If not, see <http://www.gnu.org/licenses/>.
+
+from kivy.config import Config
+Config.set('graphics', 'resizable', True)
+Config.set('graphics', 'width', '1024')
+Config.set('graphics', 'height', '768')
+
+
+from kivy.core.window import Window 
+from kivy.uix.floatlayout import FloatLayout
+ 
+class MainFrame(FloatLayout):
+    def __init__(self, **kwargs):
+        super(MainFrame, self).__init__(**kwargs)
