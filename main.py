@@ -25,15 +25,31 @@ TITLE_WINDOW = f'System Monitoring v{VERSION}'
 import kivy
 kivy.require('2.2.1')
 from kivy.app import App
+from kivy.uix.screenmanager import ScreenManager, Screen, FadeTransition
+from kivy.lang import Builder
+from kivy.uix.floatlayout import FloatLayout
 
-import functions, gui
+import functions
+
+class MainWindow(FloatLayout):
+    pass
+
+class MonitoringScreen(Screen):
+    pass
+
+class OptionsScreen(Screen):
+    pass
+
+class AboutScreen(Screen):
+    pass
 
 class SystemMonitoring(App):
     
     def build(self):
+
         self.title = TITLE_WINDOW
         self.VERSION = VERSION
-        return gui.MainFrame()
+        return MainWindow()
     
 if __name__ == '__main__':
     SystemMonitoring().run()

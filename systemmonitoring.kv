@@ -1,19 +1,120 @@
-<MainFrame>
-    canvas.before:
-        Color:
-            rgba: 0.1, 0.1, 0.1, 1
-        Rectangle:
-            pos: self.pos
-            size: root.width, root.height
-    canvas:
-        Color:
-            rgba: 0.15, 0.15, 0.15, 1
-        Rectangle:
-            pos: (root.width / 3), 0
-            size: ((root.width / 3) * 2), root.height
-    canvas.after:
-        Color:
-            rgba: 1, 1, 1, 1
-        Line:
-            width: 1.
-            points: ((root.width / 3), 0, (root.width / 3), root.height)
+#: import SwapTransition kivy.uix.screenmanager.SwapTransition
+
+<MainWindow>:
+    name: 'ScreenManager'
+    FloatLayout:
+        canvas.before:
+            Color:
+                rgba: 0.1, 0.1, 0.1, 1
+            Rectangle:
+                pos: self.pos
+                size: root.width, root.height
+        canvas:
+            Color:
+                rgba: 0.15, 0.15, 0.15, 1
+            Rectangle:
+                pos: (root.width / 3), 0
+                size: ((root.width / 3) * 2), root.height
+        canvas.after:
+            Color:
+                rgba: 1, 1, 1, 1
+            Line:
+                width: 1.
+                points: ((root.width / 3), 0, (root.width / 3), root.height)
+        ScrollView:
+            FloatLayout:
+                ScreenManager:
+                    id: sm
+                    size_hint_y: 1
+                    MonitoringScreen:
+                    OptionsScreen:
+                    AboutScreen:
+
+        Button:
+            text: "Moniteur Ressources"
+            font_size: 20
+            background_color: 0.45, 0.45, 0.45, 1
+            size_hint: 1/3, 1/10
+            pos_hint: {'x': 0, 'y': 1 - 1/10}
+            on_press:
+                sm.transition = SwapTransition()
+                sm.current = 'monitoring_screen'
+        Button:
+            text: "Options"
+            font_size: 20
+            background_color: 0.45, 0.45, 0.45, 1
+            size_hint: 1/3, 1/10
+            pos_hint: {'x': 0, 'y': 1 - 2/10}
+            on_press:
+                sm.transition = SwapTransition()
+                sm.current = 'options_screen'
+        Button:
+            text: "A Propos"
+            font_size: 20
+            background_color: 0.45, 0.45, 0.45, 1
+            size_hint: 1/3, 1/10
+            pos_hint: {'x': 0, 'y': 1 - 3/10}
+            on_press:
+                sm.transition = SwapTransition()
+                sm.current = 'about_screen'
+
+<MonitoringScreen>:
+    name: "monitoring_screen"
+    ScrollView:
+        size_hint: 2/3, 1
+        pos_hint: {'x': 1/3, 'y': 0}
+        do_scroll_x: False
+        do_scroll_y: True
+        bar_width: 5
+        scroll_type: ['bars', 'content']
+        effect_cls: 'ScrollEffect'
+        BoxLayout:
+            orientation: 'vertical'
+            id: sv_box
+            size_hint_y: None
+            height: self.minimum_height
+            Label:
+                size_hint_y: None
+                height: self.texture_size[1]
+                padding: 10, 10
+                text: "monitoring_content\n" * 100
+
+<OptionsScreen>
+    name: "options_screen"
+    ScrollView:
+        size_hint: 2/3, 1
+        pos_hint: {'x': 1/3, 'y': 0}
+        do_scroll_x: False
+        do_scroll_y: True
+        bar_width: 5
+        scroll_type: ['bars', 'content']
+        effect_cls: 'ScrollEffect'
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_y: None
+            height: self.minimum_height
+            Label:
+                size_hint_y: None
+                height: self.texture_size[1]
+                padding: 10, 10
+                text: "options_screen_content TODO"
+
+<AboutScreen>
+    name: "about_screen"
+    ScrollView:
+        size_hint: 2/3, 1
+        pos_hint: {'x': 1/3, 'y': 0}
+        do_scroll_x: False
+        do_scroll_y: True
+        bar_width: 5
+        scroll_type: ['bars', 'content']
+        effect_cls: 'ScrollEffect'
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_y: None
+            height: self.minimum_height
+            Label:
+                size_hint_y: None
+                height: self.texture_size[1]
+                padding: 10, 10
+                text: "about_screen_content TODO"
