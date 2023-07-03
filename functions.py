@@ -38,9 +38,11 @@ def crashLog(data):
     
     if path.exists(crashPath) != True:
         mkdir(crashPath)
-    with open(f'{crashPath}/{crashFile}', 'a') as f:
-        f.write(_datas)
-    sys.exit(f'An error as occured. See crash.log at {crashPath}/{crashFile} for more informations.')
+    try:
+        manipulateFile('{crashPath}/{crashFile}', 'a', _data)
+        sys.exit(f'An error as occured. See crash.log at {crashPath}/{crashFile} for more informations.')
+    except Exception as e:
+        sys.exit(f'An error as occured but the programm was unable to generate crashlog. If this error show again, please contact the developer to warn about issue.')
 
 def manipulateFile(file, mode, data=""):
     if mode == 'r':
@@ -56,6 +58,12 @@ def manipulateFile(file, mode, data=""):
                 dump(data, f)
         except Exception as e:
             crashLog(f'{e} : manipulateFile({file}, "w") call (functions.py)')
+    elif mode == 'a':
+        try:
+            with open(file, 'a') as f:
+                f.write(data)
+        except Exception as e:
+            crashLog(f'{e} : manipulateFile({file}, "a") call (functions.py)')            
 
 def getGPUFansMode(path):
     locFile = manipulateFile('locales.json', 'r')
