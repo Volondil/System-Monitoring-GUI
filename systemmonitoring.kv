@@ -1,7 +1,8 @@
 #: import SwapTransition kivy.uix.screenmanager.SwapTransition
 
 <MainWindow>:
-    name: 'ScreenManager'
+    name: 'MainWindow'
+    id: main_window
     FloatLayout:
         canvas.before:
             Color:
@@ -19,20 +20,18 @@
             Color:
                 rgba: 1, 1, 1, 1
             Line:
-                width: 1.
+                width: 1.5
                 points: ((root.width / 3), 0, (root.width / 3), root.height)
-        ScrollView:
-            FloatLayout:
-                ScreenManager:
-                    id: sm
-                    size_hint_y: 1
-                    MonitoringScreen:
-                    OptionsScreen:
-                    AboutScreen:
-
+        FloatLayout:
+            ScreenManager:
+                id: sm
+                size_hint_y: 1
+                MonitoringScreen:
+                OptionsScreen:
+                AboutScreen:
         Button:
             id: btn_resources
-            text: "Moniteur Ressources"
+            text: 'Moniteur Ressources'
             font_size: 20
             background_color: 0, 0.55, 0.85, 1
             size_hint: 1/3, 1/10
@@ -42,7 +41,7 @@
                 sm.current = 'monitoring_screen'
         Button:
             id: btn_options
-            text: "Options"
+            text: 'Options'
             font_size: 20
             background_color: 0.45, 0.45, 0.45, 1
             size_hint: 1/3, 1/10
@@ -62,9 +61,10 @@
                 sm.current = 'about_screen'
 
 <MonitoringScreen>:
-    name: "monitoring_screen"
+    name: 'monitoring_screen'
     on_pre_enter: app.root.ids.btn_resources.background_color = [0, 0.55, 0.85, 1]
     on_pre_leave: app.root.ids.btn_resources.background_color = [0.45, 0.45, 0.45, 1]
+
     ScrollView:
         size_hint: 2/3, 1
         pos_hint: {'x': 1/3, 'y': 0}
@@ -73,19 +73,198 @@
         bar_width: 5
         scroll_type: ['bars', 'content']
         effect_cls: 'ScrollEffect'
-        BoxLayout:
-            orientation: 'vertical'
-            id: sv_box
-            size_hint_y: None
+
+        GridLayout:
+            cols: 1
             height: self.minimum_height
-            Label:
+            BoxLayout:
+                orientation: 'vertical'
+                id: main_box
                 size_hint_y: None
-                height: self.texture_size[1]
-                padding: 10, 10
-                text: "monitoring_content\n" * 100
+                height: self.minimum_height
+
+                BoxLayout:
+                    orientation: 'vertical'
+                    id: sys_box
+                    size_hint_y: None
+                    height: self.minimum_height
+                    Label:
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding: 10, 10
+                        text: "Système"
+                        font_size: 22
+                    BoxLayout:
+                        orientation: 'vertical'
+                        size_hint_y: None
+                        height: self.minimum_height
+                        #canvas:
+                        #    Color:
+                        #        rgba: 0.85, 0.85, 1, 1
+                        #    Line:
+                        #        width: 1.2
+                        #        points: (5, 0, self.width - 5, 0)
+                        #    Line:
+                        #        width: 1.2
+                        #        points: (5, self.height, self.width - 5, self.height)
+                        #    Line:
+                        #        width: 1.2
+                        #        points: (5, self.height, 5, 0)
+                        #    Line:
+                        #        width: 1.2
+                        #        points: (self.width - 5, self.height, self.width - 5, 0)
+                        Label:
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            padding: 10, 10
+                            text: 'sys_content'
+                            
+                BoxLayout:
+                    orientation: 'vertical'
+                    id: cpu_box
+                    size_hint_y: None
+                    height: self.minimum_height
+                    Label:
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding: 10, 10
+                        text: 'CPU'
+                        font_size: 22
+                    BoxLayout:
+                        orientation: 'vertical'
+                        size_hint_y: None
+                        height: self.minimum_height
+                        #canvas:
+                        #    Color:
+                        #        rgba: 0.85, 0.85, 1, 1
+                        #    Line:
+                        #        width: 1.2
+                        #        points: (5, 0, self.width - 5, 0)
+                        #    Line:
+                        #        width: 1.2
+                        #        points: (5, self.height, self.width - 5, self.height)
+                        #    Line:
+                        #        width: 1.2
+                        #        points: (5, self.height, 5, 0)
+                        #    Line:
+                        #        width: 1.2
+                        #        points: (self.width - 5, self.height, self.width - 5, 0)
+                        Label:
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            padding: 10, 10
+                            text: 'cpu_content'
+
+                BoxLayout:
+                    orientation: 'vertical'
+                    id: gpu_box
+                    size_hint_y: None
+                    height: self.minimum_height
+                    Label:
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding: 10, 10
+                        text: 'GPU'
+                        font_size: 22
+                    BoxLayout:
+                        orientation: 'vertical'
+                        size_hint_y: None
+                        height: self.minimum_height
+                        #canvas:
+                        #    Color:
+                        #        rgba: 0.85, 0.85, 1, 1
+                        #    Line:
+                        #        width: 1.2
+                        #        points: (5, 0, self.width - 5, 0)
+                        #    Line:
+                        #        width: 1.2
+                        #        points: (5, self.height, self.width - 5, self.height)
+                        #    Line:
+                        #        width: 1.2
+                        #        points: (5, self.height, 5, 0)
+                        #    Line:
+                        #        width: 1.2
+                        #        points: (self.width - 5, self.height, self.width - 5, 0)
+                        Label:
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            padding: 10, 10
+                            text: 'gpu_content'
+
+                BoxLayout:
+                    orientation: 'vertical'
+                    id: net_box
+                    size_hint_y: None
+                    height: self.minimum_height
+                    Label:
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding: 10, 10
+                        text: 'Network'
+                        font_size: 22
+                    BoxLayout:
+                        orientation: 'vertical'
+                        size_hint_y: None
+                        height: self.minimum_height
+                        #canvas:
+                        #    Color:
+                        #        rgba: 0.85, 0.85, 1, 1
+                        #    Line:
+                        #        width: 1.2
+                        #        points: (5, 0, self.width - 5, 0)
+                        #    Line:
+                        #        width: 1.2
+                        #        points: (5, self.height, self.width - 5, self.height)
+                        #    Line:
+                        #        width: 1.2
+                        #        points: (5, self.height, 5, 0)
+                        #    Line:
+                        #        width: 1.2
+                        #        points: (self.width - 5, self.height, self.width - 5, 0)
+                        Label:
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            padding: 10, 10
+                            text: 'network_content'
+
+                BoxLayout:
+                    orientation: 'vertical'
+                    id: disk_box
+                    size_hint_y: None
+                    height: self.minimum_height
+                    Label:
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding: 10, 10
+                        text: 'Disk'
+                        font_size: 22
+                    BoxLayout:
+                        orientation: 'vertical'
+                        size_hint_y: None
+                        height: self.minimum_height
+                        #canvas:
+                        #    Color:
+                        #        rgba: 0.85, 0.85, 1, 1
+                        #    Line:
+                        #        width: 1.2
+                        #        points: (5, 0, self.width - 5, 0)
+                        #    Line:
+                        #        width: 1.2
+                        #        points: (5, self.height, self.width - 5, self.height)
+                        #    Line:
+                        #        width: 1.2
+                        #        points: (5, self.height, 5, 0)
+                        #    Line:
+                        #        width: 1.2
+                        #        points: (self.width - 5, self.height, self.width - 5, 0)
+                        Label:
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            padding: 10, 10
+                            text: 'disk_content'
 
 <OptionsScreen>
-    name: "options_screen"
+    name: 'options_screen'
     on_pre_enter: app.root.ids.btn_options.background_color = [0, 0.55, 0.85, 1]
     on_pre_leave: app.root.ids.btn_options.background_color = [0.45, 0.45, 0.45, 1]
     ScrollView:
@@ -104,10 +283,10 @@
                 size_hint_y: None
                 height: self.texture_size[1]
                 padding: 10, 10
-                text: "options_screen_content TODO"
+                text: 'options_screen_content TODO'
 
 <AboutScreen>
-    name: "about_screen"
+    name: 'about_screen'
     on_pre_enter: app.root.ids.btn_about.background_color = [0, 0.55, 0.85, 1]
     on_pre_leave: app.root.ids.btn_about.background_color = [0.45, 0.45, 0.45, 1]
     ScrollView:
@@ -126,4 +305,30 @@
                 size_hint_y: None
                 height: self.texture_size[1]
                 padding: 10, 10
-                text: "about_screen_content TODO"
+                font_size: 22
+                text: 'System Monitoring'
+            Label:
+                size_hint_y: None
+                height: self.texture_size[1]
+                padding: 10, 10
+                font_size: 18
+                text: 'Version'
+            Label:
+                size_hint_y: None
+                height: self.texture_size[1]
+                padding: 10, 10
+                font_size: 16
+                text: app.VERSION
+            Label:
+                size_hint_y: None
+                height: self.texture_size[1]
+                padding: 10, 10
+                font_size: 16
+                text: '\n\nCopyright © 2021-2023 Rabouteau Yoan'
+            Label:
+                size_hint_y: None
+                height: self.texture_size[1]
+                padding: 10, 10
+                font_size: 16
+                text_size: self.width, None
+                text: 'This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.'

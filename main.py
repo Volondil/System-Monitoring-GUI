@@ -16,11 +16,11 @@
  # along with this software. If not, see <http://www.gnu.org/licenses/>.
 
 VER_MAJOR = '2023.07'
-VER_MINOR = '26'
+VER_MINOR = '27'
 REVISION = 'Alpha'
 VERSION_INFO = (VER_MAJOR, VER_MINOR, REVISION)
 VERSION = '.'.join(str(c) for c in VERSION_INFO)
-TITLE_WINDOW = f'System Monitoring v{VERSION}'
+TITLE_WINDOW = f'System Monitoring'
 
 import kivy
 kivy.require('2.2.1')
