@@ -16,7 +16,7 @@
  # along with this software. If not, see <http://www.gnu.org/licenses/>.
 
 VER_MAJOR = '2023.07'
-VER_MINOR = '27'
+VER_MINOR = '28'
 REVISION = 'Alpha'
 VERSION_INFO = (VER_MAJOR, VER_MINOR, REVISION)
 VERSION = '.'.join(str(c) for c in VERSION_INFO)
@@ -29,7 +29,7 @@ from kivy.uix.screenmanager import ScreenManager, Screen, FadeTransition
 from kivy.lang import Builder
 from kivy.uix.floatlayout import FloatLayout
 
-import functions
+import functions, webbrowser
 
 class MainWindow(FloatLayout):
     pass
@@ -50,6 +50,9 @@ class SystemMonitoring(App):
         self.title = TITLE_WINDOW
         self.VERSION = VERSION
         return MainWindow()
+    
+    def hyperLink(self):
+        webbrowser.open('https://www.gnu.org/licenses/gpl-3.0.html')
     
 if __name__ == '__main__':
     SystemMonitoring().run()
