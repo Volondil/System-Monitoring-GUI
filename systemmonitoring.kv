@@ -97,6 +97,12 @@
                     height: self.minimum_height
                     canvas:
                         Color:
+                            rgba: 0.2, 0.2, 0.2, 1
+                        Rectangle:
+                            pos: self.x + 5, self.y
+                            size: self.width - 15, self.height
+                    canvas.after:
+                        Color:
                             rgba: 0.45, 0.45, 0.6, 1
                         Line:
                             width: 1.2
@@ -169,21 +175,107 @@
                     padding: 10, 10
                     text: 'CPU'
                     font_size: 22
-                BoxLayout:
-                    orientation: 'vertical'
+
+                GridLayout:
+                    cols: 2
                     size_hint_y: None
                     height: self.minimum_height
                     canvas:
+                        Color:
+                            rgba: 0.2, 0.2, 0.2, 1
+                        Rectangle:
+                            pos: self.x + 5, self.y
+                            size: self.width - 15, self.height
+                    canvas.after:
                         Color:
                             rgba: 0.45, 0.45, 0.6, 1
                         Line:
                             width: 1.2
                             rectangle: (self.x + 5, self.y, self.width - 15, self.height)
+
                     Label:
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
-                        text: 'cpu_content'
+                        text: 'Charge'
+                        text_size: self.size
+                    Label:
+                        halign: 'right'
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding: 10, 10
+                        text: '0 %'
+                        text_size: self.size
+
+                    Label:
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding: 10, 10
+                        text: 'Fréquence'
+                        text_size: self.size
+                    Label:
+                        halign: 'right'
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding: 10, 10
+                        text: '2.78 GHZ'
+                        text_size: self.size
+
+                    Label:
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding: 10, 10
+                        text: 'Température'
+                        text_size: self.size
+                    Label:
+                        halign: 'right'
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding: 10, 10
+                        text: '45 °C'
+                        text_size: self.size
+
+                    Label:
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding: 10, 10
+                        text: 'Cache L1'
+                        text_size: self.size
+                    Label:
+                        halign: 'right'
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding: 10, 10
+                        text: '192KB'
+                        text_size: self.size
+
+                    Label:
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding: 10, 10
+                        text: 'Cache L2'
+                        text_size: self.size
+                    Label:
+                        halign: 'right'
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding: 10, 10
+                        text: '3MiB'
+                        text_size: self.size
+
+                    Label:
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding: 10, 10
+                        text: 'Cache L3'
+                        text_size: self.size
+                    Label:
+                        halign: 'right'
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding: 10, 10
+                        text: '32MiB'
+                        text_size: self.size
 
             BoxLayout:
                 orientation: 'vertical'
@@ -196,21 +288,143 @@
                     padding: 10, 10
                     text: 'Memory'
                     font_size: 22
+                
                 BoxLayout:
                     orientation: 'vertical'
                     size_hint_y: None
                     height: self.minimum_height
                     canvas:
                         Color:
+                            rgba: 0.2, 0.2, 0.2, 1
+                        Rectangle:
+                            pos: self.x + 5, self.y
+                            size: self.width - 15, self.height
+                    canvas.after:
+                        Color:
                             rgba: 0.45, 0.45, 0.6, 1
                         Line:
                             width: 1.2
                             rectangle: (self.x + 5, self.y, self.width - 15, self.height)
+
                     Label:
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
-                        text: 'memory_content'
+                        text: 'SWAP'
+                    GridLayout:
+                        cols: 2
+                        size_hint_y: None
+                        height: self.minimum_height
+
+                        Label:
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            padding: 10, 10
+                            text: 'Totale'
+                            text_size: self.size
+                        Label:
+                            halign: 'right'
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            padding: 10, 10
+                            text: '4GB'
+                            text_size: self.size
+
+                        Label:
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            padding: 10, 10
+                            text: 'Utilisée'
+                            text_size: self.size
+                        Label:
+                            halign: 'right'
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            padding: 10, 10
+                            text: '2GB'
+                            text_size: self.size
+
+                        Label:
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            padding: 10, 10
+                            text: 'Charge'
+                            text_size: self.size
+                        Label:
+                            halign: 'right'
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            padding: 10, 10
+                            text: '50 %'
+                            text_size: self.size
+                BoxLayout:
+                    orientation: 'vertical'
+                    size_hint_y: None
+                    height: self.minimum_height
+                    canvas:
+                        Color:
+                            rgba: 0.2, 0.2, 0.2, 1
+                        Rectangle:
+                            pos: self.x + 5, self.y
+                            size: self.width - 15, self.height
+                    canvas.after:
+                        Color:
+                            rgba: 0.45, 0.45, 0.6, 1
+                        Line:
+                            width: 1.2
+                            rectangle: (self.x + 5, self.y, self.width - 15, self.height)
+
+                    Label:
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding: 10, 10
+                        text: 'RAM'
+                    GridLayout:
+                        cols: 2
+                        size_hint_y: None
+                        height: self.minimum_height
+
+                        Label:
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            padding: 10, 10
+                            text: 'Totale'
+                            text_size: self.size
+                        Label:
+                            halign: 'right'
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            padding: 10, 10
+                            text: '16GB'
+                            text_size: self.size
+
+                        Label:
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            padding: 10, 10
+                            text: 'Utilisée'
+                            text_size: self.size
+                        Label:
+                            halign: 'right'
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            padding: 10, 10
+                            text: '4GB'
+                            text_size: self.size
+
+                        Label:
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            padding: 10, 10
+                            text: 'Charge'
+                            text_size: self.size
+                        Label:
+                            halign: 'right'
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            padding: 10, 10
+                            text: '25 %'
+                            text_size: self.size
 
             BoxLayout:
                 orientation: 'vertical'
@@ -223,21 +437,244 @@
                     padding: 10, 10
                     text: 'GPU'
                     font_size: 22
+                GridLayout:
+                    cols: 2
+                    size_hint_y: None
+                    height: self.minimum_height
+                    canvas:
+                        Color:
+                            rgba: 0.2, 0.2, 0.2, 1
+                        Rectangle:
+                            pos: self.x + 5, self.y
+                            size: self.width - 15, self.height
+                    canvas.after:
+                        Color:
+                            rgba: 0.45, 0.45, 0.6, 1
+                        Line:
+                            width: 1.2
+                            rectangle: (self.x + 5, self.y, self.width - 15, self.height)
+
+                    Label:
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding: 10, 10
+                        text: 'Charge'
+                        text_size: self.size
+                    Label:
+                        halign: 'right'
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding: 10, 10
+                        text: '5 %'
+                        text_size: self.size
+
+                    Label:
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding: 10, 10
+                        text: 'Fréquence'
+                        text_size: self.size
+                    Label:
+                        halign: 'right'
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding: 10, 10
+                        text: '6 MHz'
+                        text_size: self.size
+
+                    Label:
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding: 10, 10
+                        text: 'Fréquence Max'
+                        text_size: self.size
+                    Label:
+                        halign: 'right'
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding: 10, 10
+                        text: '2100 MHz'
+                        text_size: self.size
+
+                    Label:
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding: 10, 10
+                        text: 'Température'
+                        text_size: self.size
+                    Label:
+                        halign: 'right'
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding: 10, 10
+                        text: '55 °C'
+                        text_size: self.size
+
+                    Label:
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding: 10, 10
+                        text: 'Température (Puce)'
+                        text_size: self.size
+                    Label:
+                        halign: 'right'
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding: 10, 10
+                        text: '60 °C'
+                        text_size: self.size
+
                 BoxLayout:
                     orientation: 'vertical'
                     size_hint_y: None
                     height: self.minimum_height
                     canvas:
                         Color:
+                            rgba: 0.2, 0.2, 0.2, 1
+                        Rectangle:
+                            pos: self.x + 5, self.y
+                            size: self.width - 15, self.height
+                    canvas.after:
+                        Color:
                             rgba: 0.45, 0.45, 0.6, 1
                         Line:
                             width: 1.2
                             rectangle: (self.x + 5, self.y, self.width - 15, self.height)
+
                     Label:
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
-                        text: 'gpu_content'
+                        text: 'Ventilateurs'
+                    GridLayout:
+                        cols: 2
+                        size_hint_y: None
+                        height: self.minimum_height
+
+                        Label:
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            padding: 10, 10
+                            text: 'Mode'
+                            text_size: self.size
+                        Label:
+                            halign: 'right'
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            padding: 10, 10
+                            text: 'Automatique'
+                            text_size: self.size
+
+                        Label:
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            padding: 10, 10
+                            text: 'Vitesse'
+                            text_size: self.size
+                        Label:
+                            halign: 'right'
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            padding: 10, 10
+                            text: '855 T/m'
+                            text_size: self.size
+
+                BoxLayout:
+                    orientation: 'vertical'
+                    size_hint_y: None
+                    height: self.minimum_height
+                    canvas:
+                        Color:
+                            rgba: 0.2, 0.2, 0.2, 1
+                        Rectangle:
+                            pos: self.x + 5, self.y
+                            size: self.width - 15, self.height
+                    canvas.after:
+                        Color:
+                            rgba: 0.45, 0.45, 0.6, 1
+                        Line:
+                            width: 1.2
+                            rectangle: (self.x + 5, self.y, self.width - 15, self.height)
+
+                    Label:
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding: 10, 10
+                        text: 'Mémoire'
+                    GridLayout:
+                        cols: 2
+                        size_hint_y: None
+                        height: self.minimum_height
+
+                        Label:
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            padding: 10, 10
+                            text: 'Totale'
+                            text_size: self.size
+                        Label:
+                            halign: 'right'
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            padding: 10, 10
+                            text: '7.9 GB'
+                            text_size: self.size
+
+                        Label:
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            padding: 10, 10
+                            text: 'Utilisée'
+                            text_size: self.size
+                        Label:
+                            halign: 'right'
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            padding: 10, 10
+                            text: '1.2 GB'
+                            text_size: self.size
+
+                        Label:
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            padding: 10, 10
+                            text: 'GTT'
+                            text_size: self.size
+                        Label:
+                            halign: 'right'
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            padding: 10, 10
+                            text: '0.2 GB'
+                            text_size: self.size
+
+                        Label:
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            padding: 10, 10
+                            text: 'Fréquence'
+                            text_size: self.size
+                        Label:
+                            halign: 'right'
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            padding: 10, 10
+                            text: '875 GHz'
+                            text_size: self.size
+
+                        Label:
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            padding: 10, 10
+                            text: 'Température'
+                            text_size: self.size
+                        Label:
+                            halign: 'right'
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            padding: 10, 10
+                            text: '60 °C'
+                            text_size: self.size
 
             BoxLayout:
                 orientation: 'vertical'
@@ -250,21 +687,148 @@
                     padding: 10, 10
                     text: 'Network'
                     font_size: 22
-                BoxLayout:
-                    orientation: 'vertical'
+                GridLayout:
+                    cols: 2
                     size_hint_y: None
                     height: self.minimum_height
                     canvas:
+                        Color:
+                            rgba: 0.2, 0.2, 0.2, 1
+                        Rectangle:
+                            pos: self.x + 5, self.y
+                            size: self.width - 15, self.height
+                    canvas.after:
                         Color:
                             rgba: 0.45, 0.45, 0.6, 1
                         Line:
                             width: 1.2
                             rectangle: (self.x + 5, self.y, self.width - 15, self.height)
+
                     Label:
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
-                        text: 'network_content'
+                        text: 'Carte'
+                        text_size: self.size
+                    Label:
+                        halign: 'right'
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding: 10, 10
+                        text: 'enp4s0'
+                        text_size: self.size
+
+                    Label:
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding: 10, 10
+                        text: 'Mode Duplex'
+                        text_size: self.size
+                    Label:
+                        halign: 'right'
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding: 10, 10
+                        text: 'Full Duplex'
+                        text_size: self.size
+
+                    Label:
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding: 10, 10
+                        text: 'Débit Max'
+                        text_size: self.size
+                    Label:
+                        halign: 'right'
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding: 10, 10
+                        text: '125.0 MB/s'
+                        text_size: self.size
+
+                    Label:
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding: 10, 10
+                        text: 'Réception'
+                        text_size: self.size
+                    Label:
+                        halign: 'right'
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding: 10, 10
+                        text: '0 Octet(s)/s'
+                        text_size: self.size
+
+                    Label:
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding: 10, 10
+                        text: 'Envoi'
+                        text_size: self.size
+                    Label:
+                        halign: 'right'
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding: 10, 10
+                        text: '0 Octet(s)/s'
+                        text_size: self.size
+
+                    Label:
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding: 10, 10
+                        text: 'Adresse IPV4'
+                        text_size: self.size
+                    Label:
+                        halign: 'right'
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding: 10, 10
+                        text: '192.168.1.20'
+                        text_size: self.size
+
+                    Label:
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding: 10, 10
+                        text: 'Adresse IPV6'
+                        text_size: self.size
+                    Label:
+                        halign: 'right'
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding: 10, 10
+                        text: '2d2e:84f4:d4a1:47e8:4aac:a486:14f5:ac14'
+                        text_size: self.size
+
+                    Label:
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding: 10, 10
+                        text: 'Données Reçues'
+                        text_size: self.size
+                    Label:
+                        halign: 'right'
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding: 10, 10
+                        text: '12.55 MB'
+                        text_size: self.size
+
+                    Label:
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding: 10, 10
+                        text: 'Données Transmises'
+                        text_size: self.size
+                    Label:
+                        halign: 'right'
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        padding: 10, 10
+                        text: '857.25 KB'
+                        text_size: self.size
 
             BoxLayout:
                 orientation: 'vertical'
