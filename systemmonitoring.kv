@@ -161,7 +161,7 @@
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
-                        text: 'AMD Radeon RX 5700 XT'
+                        text: app.GPU.name
                         text_size: self.size
 
             BoxLayout:
@@ -465,7 +465,7 @@
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
-                        text: '5 %'
+                        text: app.GPU.load
                         text_size: self.size
 
                     Label:
@@ -479,7 +479,7 @@
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
-                        text: '6 MHz'
+                        text: app.GPU.clock
                         text_size: self.size
 
                     Label:
@@ -493,7 +493,7 @@
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
-                        text: '2100 MHz'
+                        text: app.GPU.maxClock
                         text_size: self.size
 
                     Label:
@@ -507,7 +507,7 @@
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
-                        text: '55 °C'
+                        text: app.GPU.temp
                         text_size: self.size
 
                     Label:
@@ -521,7 +521,7 @@
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
-                        text: '60 °C'
+                        text: app.GPU.chipTemp
                         text_size: self.size
 
                 BoxLayout:
@@ -562,7 +562,7 @@
                             size_hint_y: None
                             height: self.texture_size[1]
                             padding: 10, 10
-                            text: 'Automatique'
+                            text: app.GPU.fansMode
                             text_size: self.size
 
                         Label:
@@ -576,7 +576,7 @@
                             size_hint_y: None
                             height: self.texture_size[1]
                             padding: 10, 10
-                            text: '855 T/m'
+                            text: app.GPU.fansSpeed
                             text_size: self.size
 
                 BoxLayout:
@@ -617,7 +617,7 @@
                             size_hint_y: None
                             height: self.texture_size[1]
                             padding: 10, 10
-                            text: '7.9 GB'
+                            text: app.GPU.memMax
                             text_size: self.size
 
                         Label:
@@ -631,7 +631,7 @@
                             size_hint_y: None
                             height: self.texture_size[1]
                             padding: 10, 10
-                            text: '1.2 GB'
+                            text: app.GPU.memUsage
                             text_size: self.size
 
                         Label:
@@ -645,7 +645,7 @@
                             size_hint_y: None
                             height: self.texture_size[1]
                             padding: 10, 10
-                            text: '0.2 GB'
+                            text: app.GPU.gtt
                             text_size: self.size
 
                         Label:
@@ -659,7 +659,7 @@
                             size_hint_y: None
                             height: self.texture_size[1]
                             padding: 10, 10
-                            text: '875 GHz'
+                            text: app.GPU.memClockMax
                             text_size: self.size
 
                         Label:
@@ -673,7 +673,7 @@
                             size_hint_y: None
                             height: self.texture_size[1]
                             padding: 10, 10
-                            text: '60 °C'
+                            text: app.GPU.memTemp
                             text_size: self.size
 
             BoxLayout:
