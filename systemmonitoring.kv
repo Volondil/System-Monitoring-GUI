@@ -109,54 +109,62 @@
                             rectangle: (self.x + 5, self.y, self.width - 15, self.height)
 
                     Label:
+                        id: system_name_loc
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
                         text: "Système d'exploitation"
                         text_size: self.size
                     Label:
+                        id: system_name
                         halign: 'right'
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
-                        text: 'Linux Manjaro'
+                        text: ''
                         text_size: self.size
 
                     Label:
+                        id: kernel_loc
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
                         text: 'Noyau'
                         text_size: self.size
                     Label:
+                        id: kernel
                         halign: 'right'
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
-                        text: 'Linux-6.1.31-2-MANJARO-x86_64'
+                        text: ''
                         text_size: self.size
 
                     Label:
+                        id: cpu_name_loc
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
                         text: 'Processeur'
                         text_size: self.size
                     Label:
+                        id: cpu_name
                         halign: 'right'
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
-                        text: 'AMD Ryzen 5 3600 6-Core'
+                        text: ''
                         text_size: self.size
 
                     Label:
+                        id: gpu_name_loc
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
                         text: 'Processeur Graphique'
                         text_size: self.size
                     Label:
+                        id: gpu_name
                         halign: 'right'
                         size_hint_y: None
                         height: self.texture_size[1]
@@ -729,54 +737,62 @@
                             rectangle: (self.x + 5, self.y, self.width - 15, self.height)
 
                     Label:
+                        id: net_card_loc
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
                         text: 'Carte'
                         text_size: self.size
                     Label:
+                        id: net_card
                         halign: 'right'
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
-                        text: 'enp4s0'
+                        text: ''
                         text_size: self.size
 
                     Label:
+                        id: net_duplex_loc
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
                         text: 'Mode Duplex'
                         text_size: self.size
                     Label:
+                        id: net_duplex
                         halign: 'right'
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
-                        text: 'Full Duplex'
+                        text: ''
                         text_size: self.size
 
                     Label:
+                        id: net_speed_loc
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
                         text: 'Débit Max'
                         text_size: self.size
                     Label:
+                        id: net_speed
                         halign: 'right'
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
-                        text: '125.0 MB/s'
+                        text: ''
                         text_size: self.size
 
                     Label:
+                        id: net_receiving_loc
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
                         text: 'Réception'
                         text_size: self.size
                     Label:
+                        id: net_receiving
                         halign: 'right'
                         size_hint_y: None
                         height: self.texture_size[1]
@@ -785,54 +801,62 @@
                         text_size: self.size
 
                     Label:
+                        id: net_sending_loc
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
                         text: 'Envoi'
                         text_size: self.size
                     Label:
+                        id: net_sending
                         halign: 'right'
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
-                        text: '0 Octet(s)/s'
+                        text: ''
                         text_size: self.size
 
                     Label:
+                        id: net_ipv4_loc
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
                         text: 'Adresse IPV4'
                         text_size: self.size
                     Label:
+                        id: net_ipv4
                         halign: 'right'
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
-                        text: '192.168.1.20'
+                        text: ''
                         text_size: self.size
 
                     Label:
+                        id:net_ipv6_loc
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
                         text: 'Adresse IPV6'
                         text_size: self.size
                     Label:
+                        id: net_ipv6
                         halign: 'right'
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
-                        text: '2d2e:84f4:d4a1:47e8:4aac:a486:14f5:ac14'
+                        text: ''
                         text_size: self.size
 
                     Label:
+                        id: net_data_recv_loc
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
                         text: 'Données Reçues'
                         text_size: self.size
                     Label:
+                        id: net_data_recv
                         halign: 'right'
                         size_hint_y: None
                         height: self.texture_size[1]
@@ -841,12 +865,14 @@
                         text_size: self.size
 
                     Label:
+                        id: net_data_sent_loc
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
                         text: 'Données Transmises'
                         text_size: self.size
                     Label:
+                        id: net_data_sent
                         halign: 'right'
                         size_hint_y: None
                         height: self.texture_size[1]

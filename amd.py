@@ -1,19 +1,20 @@
- # Copyright (C) 2021-2023 Rabouteau Yoan <rabouteau.yoan@outlook.fr>
- #
- # This file is part of System Monitoring.
- #
- # System Monitoring is free software: you can redistribute it and/or modify
- # it under the terms of the GNU General Public License as published by
- # the Free Software Foundation, either version 3 of the License, or
- # (at your option) any later version.
- #
- # System Monitoring is distributed in the hope that it will be useful,
- # but WITHOUT ANY WARRANTY; without even the implied warranty of
- # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- # GNU General Public License for more details.
- #
- # You should have received a copy of the GNU General Public License
- # along with this software. If not, see <http://www.gnu.org/licenses/>.
+# Copyright (C) 2021-2023 Rabouteau Yoan <rabouteau.yoan@outlook.fr>
+#
+# This file is part of System Monitoring.
+#
+# System Monitoring is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# System Monitoring is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this software. If not, see <http://www.gnu.org/licenses/>.
+
 import psutil, datetime, json
 from kivy.clock import Clock
 import pyamdgpuinfo
@@ -38,48 +39,23 @@ class gpu:
         
     def update(self, box):
         #self.name have to add to system bos (sys_box)
-        box.load.text = self.load
-        box.mem_usage.text = self.memUsage
-        box.clock.text = self.clock
-        box.gtt.text = self.gtt
+        box.load.text = self.load + ' %'
+        box.mem_usage.text = self.memUsage + ' GB'
+        box.clock.text = self.clock + ' Mz'
+        box.gtt.text = self.gtt + ' GB'
         #box.power.text = self.power
         #box.voltage.text = self.voltage
         box.fans_mode.text = self.fansMode
-        box.max_clock.text = self.maxClock
-        box.mem_max.text = self.memMax
-        box.mem_clock_max.text = self.memClockMax
-        box.temp.text = self.temp
-        box.chip_temp.text = self.chipTemp
-        box.fans_speed.text = self.fansSpeed
-        box.mem_temp.text = self.memTemp
+        box.max_clock.text = self.maxClock + ' MHz'
+        box.mem_max.text = self.memMax + ' GB'
+        box.mem_clock_max.text = self.memClockMax + ' MHz'
+        box.temp.text = self.temp + ' °C'
+        box.chip_temp.text = self.chipTemp + ' °C'
+        box.fans_speed.text = self.fansSpeed + ' Tr/m'
+        box.mem_temp.text = self.memTemp + ' °C'
         
-def log_crash(datas):
-    c_path = 'crash'
-    c_file = 'crash.log'
-    _datas = f'{datetime.datetime.now().strftime("[%d/%m/%y][%H:%M:%S][ERROR]: ")}{datas}\n'
-    if path.exists(f'{c_path}/{c_file}') != True:
-        mkdir(c_path)
-    with open(f'{c_path}/{c_file}', 'a') as f:
-        f.write(_datas)
-    sys.exit(f'An error as occured. See crash.log at {c_path}/{c_file} for more informations.')
-    
-def manipulateFile(file, mode, data=""):
-    if mode == 'r':
-        try:
-            with open(file, 'r') as f:
-                j = json.load(f)
-                return j
-        except Exception as e:
-            log_crash(f'{e} : manipulateFile({file}) call (with open ({file}, "r")) (amd.py)')
-    elif mode == 'w':
-        try:
-            with open(file, 'w') as f:
-                json.dump(data, f)
-        except Exception as e:
-            log_crash(f'{e} : manipulateFile({file}) call (with open ({file}, "w")) (amd.py)')
-            
 def getFansMode(path):
-    f = manipulateFile(path, 'r')
+    f = file_operate(path, 'r')
     if f == 2:
         return 'Automatique'
     elif f == 1:
@@ -88,3 +64,18 @@ def getFansMode(path):
         return 'Désactivé'
     else:
         return 'ERROR'
+        
+def file_operate(file, mode, data=""):
+    if mode == 'r':
+        try:
+            with open(file, 'r') as f:
+                j = json.load(f)
+                return j
+        except Exception as e:
+            print(f'{e} : file_operate({file}) call (with open ({file}, "r")) (misc.py)')
+    elif mode == 'w':
+        try:
+            with open(file, 'w') as f:
+                json.dump(data, f)
+        except Exception as e:
+            print(f'{e} : file_operate({file}) call (with open ({file}, "w")) (misc.py)')
