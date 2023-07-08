@@ -15,6 +15,8 @@
  # You should have received a copy of the GNU General Public License
  # along with this software. If not, see <http://www.gnu.org/licenses/>.
 import psutil, datetime, json
+from kivy.clock import Clock
+import pyamdgpuinfo
 
 class gpu:
     def __init__(self, gpu):
@@ -33,9 +35,25 @@ class gpu:
         self.chipTemp = str(int(psutil.sensors_temperatures()["amdgpu"][1][1]))
         self.fansSpeed = str(psutil.sensors_fans()["amdgpu"][0][1])
         self.memTemp = str(int(psutil.sensors_temperatures()["amdgpu"][2][1]))
-
+        
+    def update(self, box):
+        #self.name have to add to system bos (sys_box)
+        box.load.text = self.load
+        box.mem_usage.text = self.memUsage
+        box.clock.text = self.clock
+        box.gtt.text = self.gtt
+        #box.power.text = self.power
+        #box.voltage.text = self.voltage
+        box.fans_mode.text = self.fansMode
+        box.max_clock.text = self.maxClock
+        box.mem_max.text = self.memMax
+        box.mem_clock_max.text = self.memClockMax
+        box.temp.text = self.temp
+        box.chip_temp.text = self.chipTemp
+        box.fans_speed.text = self.fansSpeed
+        box.mem_temp.text = self.memTemp
+        
 def log_crash(datas):
-    curses.endwin()
     c_path = 'crash'
     c_file = 'crash.log'
     _datas = f'{datetime.datetime.now().strftime("[%d/%m/%y][%H:%M:%S][ERROR]: ")}{datas}\n'

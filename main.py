@@ -16,7 +16,7 @@
  # along with this software. If not, see <http://www.gnu.org/licenses/>.
 
 VER_MAJOR = '2023.07'
-VER_MINOR = '33'
+VER_MINOR = '34'
 REVISION = 'Alpha'
 VERSION_INFO = (VER_MAJOR, VER_MINOR, REVISION)
 VERSION = '.'.join(str(c) for c in VERSION_INFO)
@@ -38,8 +38,26 @@ class MainWindow(FloatLayout):
     pass
 
 class MonitoringScreen(Screen):
-    pass
+    def __init__(self, **kwargs):
+        super(MonitoringScreen, self).__init__(**kwargs)
+        self.GPU = AMD.gpu(pyamdgpuinfo.get_gpu(0))
+        Clock.schedule_interval(self.callback, 1)
+        
+    def on_stop(self):
+        Clock.unschedule(self.callback)
+        
+    def on_start(self):
+        Clock.schedule_interval(self.callback, 1)
+        
+    def callback(self, dt):
 
+        setattr(self, 'GPU', AMD.gpu(pyamdgpuinfo.get_gpu(0)))
+        self.refreshScreen()
+    
+    def refreshScreen(self):
+        
+        self.GPU.update(self.ids)
+        
 class OptionsScreen(Screen):
     pass
 
@@ -52,10 +70,12 @@ class SystemMonitoring(App):
 
         self.title = TITLE_WINDOW
         self.VERSION = VERSION
-        if AMD.gpu(pyamdgpuinfo.get_gpu(0)) != False:
-            self.GPU = AMD.gpu(pyamdgpuinfo.get_gpu(0))
-        else:
-            self.GPU = None # TODO: Add NVIDIA check
+        try:
+            AMD.gpu(pyamdgpuinfo.get_gpu(0))
+        except Exception as e:
+            print(f'{e} || No AMD GPU found')
+            raise SystemExit()
+        
         return MainWindow()
     
     def hyperLink(self):

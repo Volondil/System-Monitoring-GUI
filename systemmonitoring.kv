@@ -63,8 +63,8 @@
 
 <MonitoringScreen>:
     name: 'monitoring_screen'
-    on_pre_enter: app.root.ids.btn_resources.background_color = [0, 0.55, 0.85, 1]
-    on_pre_leave: app.root.ids.btn_resources.background_color = [0.45, 0.45, 0.45, 1]
+    on_pre_enter: app.root.ids.btn_resources.background_color = [0, 0.55, 0.85, 1]; root.on_start()
+    on_pre_leave: app.root.ids.btn_resources.background_color = [0.45, 0.45, 0.45, 1]; root.on_stop()
 
     ScrollView:
         size_hint: 2/3, 1
@@ -161,7 +161,7 @@
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
-                        text: app.GPU.name
+                        text: ''
                         text_size: self.size
 
             BoxLayout:
@@ -455,73 +455,83 @@
                             rectangle: (self.x + 5, self.y, self.width - 15, self.height)
 
                     Label:
+                        id: load_loc
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
                         text: 'Charge'
                         text_size: self.size
                     Label:
+                        id: load
                         halign: 'right'
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
-                        text: app.GPU.load
+                        text: ''
                         text_size: self.size
 
                     Label:
+                        id: clock_loc
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
                         text: 'Fréquence'
                         text_size: self.size
                     Label:
+                        id: clock
                         halign: 'right'
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
-                        text: app.GPU.clock
+                        text: ''
                         text_size: self.size
 
                     Label:
+                        id: max_clock_loc
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
                         text: 'Fréquence Max'
                         text_size: self.size
                     Label:
+                        id: max_clock
                         halign: 'right'
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
-                        text: app.GPU.maxClock
+                        text: ''
                         text_size: self.size
 
                     Label:
+                        id: temp_loc
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
                         text: 'Température'
                         text_size: self.size
                     Label:
+                        id: temp
                         halign: 'right'
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
-                        text: app.GPU.temp
+                        text: ''
                         text_size: self.size
 
                     Label:
+                        id: chip_temp_loc
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
                         text: 'Température (Puce)'
                         text_size: self.size
                     Label:
+                        id: chip_temp
                         halign: 'right'
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
-                        text: app.GPU.chipTemp
+                        text: ''
                         text_size: self.size
 
                 BoxLayout:
@@ -552,31 +562,35 @@
                         height: self.minimum_height
 
                         Label:
+                            id: fans_mode_loc
                             size_hint_y: None
                             height: self.texture_size[1]
                             padding: 10, 10
                             text: 'Mode'
                             text_size: self.size
                         Label:
+                            id: fans_mode
                             halign: 'right'
                             size_hint_y: None
                             height: self.texture_size[1]
                             padding: 10, 10
-                            text: app.GPU.fansMode
+                            text: ''
                             text_size: self.size
 
                         Label:
+                            id: fans_speed_loc
                             size_hint_y: None
                             height: self.texture_size[1]
                             padding: 10, 10
                             text: 'Vitesse'
                             text_size: self.size
                         Label:
+                            id : fans_speed
                             halign: 'right'
                             size_hint_y: None
                             height: self.texture_size[1]
                             padding: 10, 10
-                            text: app.GPU.fansSpeed
+                            text: ''
                             text_size: self.size
 
                 BoxLayout:
@@ -607,73 +621,83 @@
                         height: self.minimum_height
 
                         Label:
+                            id: mem_max_loc
                             size_hint_y: None
                             height: self.texture_size[1]
                             padding: 10, 10
                             text: 'Totale'
                             text_size: self.size
                         Label:
+                            id: mem_max
                             halign: 'right'
                             size_hint_y: None
                             height: self.texture_size[1]
                             padding: 10, 10
-                            text: app.GPU.memMax
+                            text: ''
                             text_size: self.size
 
                         Label:
+                            id: mem_usage_loc
                             size_hint_y: None
                             height: self.texture_size[1]
                             padding: 10, 10
                             text: 'Utilisée'
                             text_size: self.size
                         Label:
+                            id: mem_usage
                             halign: 'right'
                             size_hint_y: None
                             height: self.texture_size[1]
                             padding: 10, 10
-                            text: app.GPU.memUsage
+                            text: ''
                             text_size: self.size
 
                         Label:
+                            id: gtt_loc
                             size_hint_y: None
                             height: self.texture_size[1]
                             padding: 10, 10
                             text: 'GTT'
                             text_size: self.size
                         Label:
+                            id: gtt
                             halign: 'right'
                             size_hint_y: None
                             height: self.texture_size[1]
                             padding: 10, 10
-                            text: app.GPU.gtt
+                            text: ''
                             text_size: self.size
 
                         Label:
+                            id: mem_clock_max_loc
                             size_hint_y: None
                             height: self.texture_size[1]
                             padding: 10, 10
                             text: 'Fréquence'
                             text_size: self.size
                         Label:
+                            id: mem_clock_max
                             halign: 'right'
                             size_hint_y: None
                             height: self.texture_size[1]
                             padding: 10, 10
-                            text: app.GPU.memClockMax
+                            text: ''
                             text_size: self.size
 
                         Label:
+                            id: mem_temp_loc
                             size_hint_y: None
                             height: self.texture_size[1]
                             padding: 10, 10
                             text: 'Température'
                             text_size: self.size
                         Label:
+                            id: mem_temp
                             halign: 'right'
                             size_hint_y: None
                             height: self.texture_size[1]
                             padding: 10, 10
-                            text: app.GPU.memTemp
+                            text: ''
                             text_size: self.size
 
             BoxLayout:
