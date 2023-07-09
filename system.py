@@ -98,7 +98,6 @@ class network:
         box.net_ipv6.text = self.ipv6Address
         box.net_speed.text = f'{self.speed} MB/s'
         box.net_duplex.text = self.duplexType
-        #box.net_receiving.text = f'{self.tFRecv} {self.tFRUnit}'
         
 class cpu:
     def __init__(self):
