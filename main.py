@@ -16,7 +16,7 @@
 # along with this software. If not, see <http://www.gnu.org/licenses/>.
 
 VER_MAJOR = '2023.07'
-VER_MINOR = '37'
+VER_MINOR = '38'
 REVISION = 'Alpha'
 VERSION_INFO = (VER_MAJOR, VER_MINOR, REVISION)
 VERSION = '.'.join(str(c) for c in VERSION_INFO)
@@ -30,10 +30,12 @@ from kivy.lang import Builder
 from kivy.uix.floatlayout import FloatLayout
 from kivy.clock import Clock
 
-import functions, webbrowser, pyamdgpuinfo, psutil
+import functions, webbrowser, pyamdgpuinfo, psutil, threading
 import amd as AMD
 import nvidia as NVIDIA
 import system as SYSTEM
+
+from time import sleep
 
 from kivy.config import Config
 Config.set('graphics', 'width', '1024')
@@ -42,7 +44,7 @@ Config.set('graphics', 'height', '768')
 class MainWindow(FloatLayout):
     def __init__(self, **kwargs):
         super(MainWindow, self).__init__(**kwargs)
-
+        
 class MonitoringScreen(Screen):
     def __init__(self, **kwargs):
         super(MonitoringScreen, self).__init__(**kwargs)
@@ -52,15 +54,28 @@ class MonitoringScreen(Screen):
         self.NET = SYSTEM.network()
         Clock.schedule_interval(self.callback, 1)
         Clock.schedule_once(self.initCallback)
-        
+        self.event = threading.Event()
+        self.t = threading.Thread(target=self.updateThread, daemon=True, args=(self.event,)).start()
+    
+    def updateThread(self, event):
+        while not self.event.isSet():
+            self.dRecv = psutil.net_io_counters().bytes_recv
+            self.dSent = psutil.net_io_counters().bytes_sent
+            self.event.wait(1)
+            self.tRecv = psutil.net_io_counters().bytes_recv - self.dRecv
+            self.tSent = psutil.net_io_counters().bytes_sent - self.dSent
+            self.tFRecv, self.tFRUnit = self.NET.formatBytes(self.tRecv)
+            self.tFSent, self.tFSUnit = self.NET.formatBytes(self.tSent)
+            self.ids.net_receiving.text = str(self.tFRecv) + ' ' + self.tFRUnit
+            self.ids.net_sending.text = str(self.tFSent) + ' ' + self.tFSUnit
+                        
     def on_stop(self):
         Clock.unschedule(self.callback)
         
     def on_start(self):
         Clock.schedule_interval(self.callback, 1)
-        
+              
     def callback(self, dt):
-    
         setattr(self, 'GPU', AMD.gpu(pyamdgpuinfo.get_gpu(0)))
         setattr(self, 'NET', SYSTEM.network())
         self.refreshScreen()

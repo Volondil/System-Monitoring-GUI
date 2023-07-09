@@ -30,10 +30,8 @@ class system:
        
 class network:
     def __init__(self):
-        self.dSent = psutil.net_io_counters().bytes_sent
-        self.dRecv = psutil.net_io_counters().bytes_recv
-        self.bRecv = 0
-        self.bSent = 0
+        self.dSent, self.sUnit = self.formatBytes(psutil.net_io_counters().bytes_sent)
+        self.dRecv, self.rUnit = self.formatBytes(psutil.net_io_counters().bytes_recv)
         net_cards = psutil.net_if_stats()
         net_card_dict = {}
 
@@ -87,24 +85,20 @@ class network:
             self.f_unit = 'gb'
         return self.f_bytes, self.f_unit
     
-    def netCounterCalc(self):
-        self.t_recv = (psutil.net_io_counters().bytes_recv - self.bRecv)
-        self.t_sent = (psutil.net_io_counters().bytes_sent - self.bSent)
-        self.bRecv = psutil.net_io_counters().bytes_recv
-        self.bSent = psutil.net_io_counters().bytes_sent
+    def netCounterCalc(self, bRecv, bSent):
+        self.t_recv = (psutil.net_io_counters().bytes_recv - bRecv)
+        self.t_sent = (psutil.net_io_counters().bytes_sent - bSent)
         return self.t_recv, self.t_sent
     
     def update(self, box):
-        #box.net_data_recv.text = f'{self.dRecv} {self.rUnit}'
-        #box.net_data_sent.text = f'{self.dSent} {self.sUnit}'
+        box.net_data_recv.text = f'{self.dRecv} {self.rUnit}'
+        box.net_data_sent.text = f'{self.dSent} {self.sUnit}'
         box.net_card.text = self.card
         box.net_ipv4.text = self.ipv4Address
         box.net_ipv6.text = self.ipv6Address
         box.net_speed.text = f'{self.speed} MB/s'
         box.net_duplex.text = self.duplexType
-        #self.tRecv, self.tSent = self.netCounterCalc()
-        #self.fTRecv, self.fTRUnit = self.formatBytes(self.tRecv)
-        #box.net_receiving.text = f'{self.fTRecv} {self.fTRUnit}'
+        #box.net_receiving.text = f'{self.tFRecv} {self.tFRUnit}'
         
 class cpu:
     def __init__(self):
