@@ -15,7 +15,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this software. If not, see <http://www.gnu.org/licenses/>.
 import psutil, re, stat, pyamdgpuinfo, platform
-from time import sleep
 from subprocess import check_output as bashCMD
 
 class system:
@@ -88,16 +87,16 @@ class network:
         self.f_unit = ''
         if bytes < 1024:
             self.f_bytes = bytes
-            self.f_unit = 'byte'
+            self.f_unit = 'Byte(s)'
         elif bytes >= 1024 and bytes < 1048576:
             self.f_bytes = round(bytes / 1024, 2)
-            self.f_unit = 'kb'
+            self.f_unit = 'KB'
         elif bytes >= 1048576 and bytes < 1073741824:
             self.f_bytes = round(bytes / 1048576, 2)
-            self.f_unit = 'mb'
+            self.f_unit = 'MB'
         elif bytes > 1073741824:
             self.f_bytes = round(bytes / 1073741824, 2)
-            self.f_unit = 'gb'
+            self.f_unit = 'GB'
         return self.f_bytes, self.f_unit
     
     def netCounterCalc(self, bRecv, bSent):
