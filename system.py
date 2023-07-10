@@ -14,20 +14,35 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this software. If not, see <http://www.gnu.org/licenses/>.
-import psutil, re, stat, subprocess, pyamdgpuinfo, platform
+import psutil, re, stat, pyamdgpuinfo, platform
 from time import sleep
+from subprocess import check_output as bashCMD
 
 class system:
     def __init__(self):
         self.gpuName = pyamdgpuinfo.get_gpu(0).name
         self.osName = platform.system()
         self.kernel = platform.platform()
+        self.swapUsed = f'{str(round(psutil.swap_memory().used / 1073741824, 1))} GB'
+        self.swapTotal = f'{str(round(psutil.swap_memory().total / 1073741824, 1))} GB'
+        self.swapLoad = f'{str(round(psutil.swap_memory().percent, 1))} %'
+        self.memUsed = f'{str(round((psutil.virtual_memory().total - psutil.virtual_memory().available) / 1073741824, 1))} GB'
+        self.memTotal = f'{round(psutil.virtual_memory().total / 1073741824, 1)} GB'
+        self.memLoad = f'{str(psutil.virtual_memory().percent)} %'
         
     def initCallback(self, box):
         box.gpu_name.text = self.gpuName
         box.system_name.text = self.osName
         box.kernel.text =  re.sub("-with.*", "", self.kernel, 1)
-       
+        box.swap_total.text = self.swapTotal
+        box.memory_total.text = self.memTotal
+    
+    def update(self, box):
+        box.swap_used.text = self.swapUsed
+        box.swap_load.text = self.swapLoad
+        box.memory_used.text = self.memUsed
+        box.memory_load.text = self.memLoad
+    
 class network:
     def __init__(self):
         self.dSent, self.sUnit = self.formatBytes(psutil.net_io_counters().bytes_sent)
@@ -101,7 +116,13 @@ class network:
         
 class cpu:
     def __init__(self):
-        self.infos = subprocess.check_output("cat /proc/cpuinfo", shell=True).decode().strip()
+        self.load = f'{str(int(psutil.cpu_percent()))} %'
+        self.clock = f'{str(round(psutil.cpu_freq()[0] / 1000, 2))} GHz'
+        self.temp = f'{str(round(psutil.sensors_temperatures()["k10temp"][0][1], 1))} °C'
+        self.l1Cache = bashCMD("lscpu | grep 'L1d' | sed 's/:/%/' | cut -d'%' -f2 | cut -d'(' -f1", shell = True).decode().replace(' ', '').strip()
+        self.l2Cache = bashCMD("lscpu | grep 'L2' | sed 's/:/%/' | cut -d'%' -f2 | cut -d'(' -f1", shell = True).decode().replace(' ', '').strip()
+        self.l3Cache = bashCMD("lscpu | grep 'L3' | sed 's/:/%/' | cut -d'%' -f2 | cut -d'(' -f1", shell = True).decode().replace(' ', '').strip()
+        self.infos = bashCMD("cat /proc/cpuinfo", shell=True).decode().strip()
         for line in self.infos.split("\n"):
             if 'model name' in line:
                 self.name = re.sub( ".*model name.*:", "", line,1)
@@ -110,3 +131,11 @@ class cpu:
     
     def initCallback(self, box):
         box.cpu_name.text = self.name
+        box.cpu_l1_cache.text = self.l1Cache
+        box.cpu_l2_cache.text = self.l2Cache
+        box.cpu_l3_cache.text = self.l3Cache
+        
+    def update(self, box):
+        box.cpu_clock.text = self.clock
+        box.cpu_load.text = self.load
+        box.cpu_temp.text = self.temp

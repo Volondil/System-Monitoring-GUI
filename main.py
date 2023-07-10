@@ -16,7 +16,7 @@
 # along with this software. If not, see <http://www.gnu.org/licenses/>.
 
 VER_MAJOR = '2023.07'
-VER_MINOR = '40'
+VER_MINOR = '41'
 REVISION = 'Alpha'
 VERSION_INFO = (VER_MAJOR, VER_MINOR, REVISION)
 VERSION = '.'.join(str(c) for c in VERSION_INFO)
@@ -52,13 +52,13 @@ class MonitoringScreen(Screen):
         self.SYS = SYSTEM.system()
         self.CPU = SYSTEM.cpu()
         self.NET = SYSTEM.network()
-        Clock.schedule_interval(self.callback, 1)
-        Clock.schedule_once(self.initCallback)
         self.event = threading.Event()
         self.t = threading.Thread(target=self.updateThread, daemon=True, args=(self.event,)).start()
+        Clock.schedule_once(self.initCallback)
+        Clock.schedule_interval(self.refreshScreen, 1)
     
     def updateThread(self, event):
-        while not self.event.isSet():
+        while not self.event.is_set():
             self.dRecv = psutil.net_io_counters().bytes_recv
             self.dSent = psutil.net_io_counters().bytes_sent
             self.event.wait(1)
@@ -70,22 +70,22 @@ class MonitoringScreen(Screen):
             self.ids.net_sending.text = str(self.tFSent) + ' ' + self.tFSUnit
                         
     def on_stop(self):
-        Clock.unschedule(self.callback)
+        Clock.unschedule(self.refreshScreen)
         
     def on_start(self):
-        Clock.schedule_interval(self.callback, 1)
+        Clock.schedule_interval(self.refreshScreen, 1)
               
-    def callback(self, dt):
-        setattr(self, 'GPU', AMD.gpu(pyamdgpuinfo.get_gpu(0)))
-        setattr(self, 'NET', SYSTEM.network())
-        self.refreshScreen()
-    
     def initCallback(self, dt):
         self.SYS.initCallback(self.ids)
         self.CPU.initCallback(self.ids)
             
-    def refreshScreen(self):
-        
+    def refreshScreen(self, dt):
+        setattr(self, 'GPU', AMD.gpu(pyamdgpuinfo.get_gpu(0)))
+        setattr(self, 'NET', SYSTEM.network())
+        setattr(self, 'CPU', SYSTEM.cpu())
+        setattr(self, 'SYS', SYSTEM.system())
+        self.CPU.update(self.ids)
+        self.SYS.update(self.ids)
         self.GPU.update(self.ids)
         self.NET.update(self.ids)
         
@@ -96,9 +96,7 @@ class AboutScreen(Screen):
     pass
 
 class SystemMonitoring(App):
-    
     def build(self):
-
         self.TITLE = TITLE_WINDOW
         self.VERSION = VERSION
         try:

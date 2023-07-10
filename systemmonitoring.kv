@@ -202,68 +202,78 @@
                             rectangle: (self.x + 5, self.y, self.width - 15, self.height)
 
                     Label:
+                        id: cpu_load_loc
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
                         text: 'Charge'
                         text_size: self.size
                     Label:
+                        id: cpu_load
                         halign: 'right'
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
-                        text: '0 %'
+                        text: ''
                         text_size: self.size
 
                     Label:
+                        id: cpu_clock_loc
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
                         text: 'Fréquence'
                         text_size: self.size
                     Label:
+                        id: cpu_clock
                         halign: 'right'
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
-                        text: '2.78 GHZ'
+                        text: ''
                         text_size: self.size
 
                     Label:
+                        id: cpu_temp_loc
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
                         text: 'Température'
                         text_size: self.size
                     Label:
+                        id: cpu_temp
                         halign: 'right'
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
-                        text: '45 °C'
+                        text: ''
                         text_size: self.size
 
                     Label:
+                        id: cpu_l1_cache_loc
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
                         text: 'Cache L1'
                         text_size: self.size
                     Label:
+                        id: cpu_l1_cache
                         halign: 'right'
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
-                        text: '192KB'
+                        text: ''
                         text_size: self.size
 
                     Label:
+                        id: cpu_l2_cache_loc
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
                         text: 'Cache L2'
                         text_size: self.size
                     Label:
+                        id: cpu_l2_cache
                         halign: 'right'
                         size_hint_y: None
                         height: self.texture_size[1]
@@ -272,12 +282,14 @@
                         text_size: self.size
 
                     Label:
+                        id: cpu_l3_cache_loc
                         size_hint_y: None
                         height: self.texture_size[1]
                         padding: 10, 10
                         text: 'Cache L3'
                         text_size: self.size
                     Label:
+                        id: cpu_l3_cache
                         halign: 'right'
                         size_hint_y: None
                         height: self.texture_size[1]
@@ -325,45 +337,51 @@
                         height: self.minimum_height
 
                         Label:
+                            id: swap_total_loc
                             size_hint_y: None
                             height: self.texture_size[1]
                             padding: 10, 10
                             text: 'Totale'
                             text_size: self.size
                         Label:
+                            id: swap_total
                             halign: 'right'
                             size_hint_y: None
                             height: self.texture_size[1]
                             padding: 10, 10
-                            text: '4GB'
+                            text: ''
                             text_size: self.size
 
                         Label:
+                            id: swap_used_loc
                             size_hint_y: None
                             height: self.texture_size[1]
                             padding: 10, 10
                             text: 'Utilisée'
                             text_size: self.size
                         Label:
+                            id: swap_used
                             halign: 'right'
                             size_hint_y: None
                             height: self.texture_size[1]
                             padding: 10, 10
-                            text: '2GB'
+                            text: ''
                             text_size: self.size
 
                         Label:
+                            id: swap_load_loc
                             size_hint_y: None
                             height: self.texture_size[1]
                             padding: 10, 10
                             text: 'Charge'
                             text_size: self.size
                         Label:
+                            id: swap_load
                             halign: 'right'
                             size_hint_y: None
                             height: self.texture_size[1]
                             padding: 10, 10
-                            text: '50 %'
+                            text: ''
                             text_size: self.size
                 BoxLayout:
                     orientation: 'vertical'
@@ -393,45 +411,51 @@
                         height: self.minimum_height
 
                         Label:
+                            id: memory_total_loc
                             size_hint_y: None
                             height: self.texture_size[1]
                             padding: 10, 10
                             text: 'Totale'
                             text_size: self.size
                         Label:
+                            id: memory_total
                             halign: 'right'
                             size_hint_y: None
                             height: self.texture_size[1]
                             padding: 10, 10
-                            text: '16GB'
+                            text: ''
                             text_size: self.size
 
                         Label:
+                            id: memory_used_loc
                             size_hint_y: None
                             height: self.texture_size[1]
                             padding: 10, 10
                             text: 'Utilisée'
                             text_size: self.size
                         Label:
+                            id: memory_used
                             halign: 'right'
                             size_hint_y: None
                             height: self.texture_size[1]
                             padding: 10, 10
-                            text: '4GB'
+                            text: ''
                             text_size: self.size
 
                         Label:
+                            id: memory_load_loc
                             size_hint_y: None
                             height: self.texture_size[1]
                             padding: 10, 10
                             text: 'Charge'
                             text_size: self.size
                         Label:
+                            id: memory_load
                             halign: 'right'
                             size_hint_y: None
                             height: self.texture_size[1]
                             padding: 10, 10
-                            text: '25 %'
+                            text: ''
                             text_size: self.size
 
             BoxLayout:
