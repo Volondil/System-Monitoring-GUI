@@ -16,7 +16,7 @@
 # along with this software. If not, see <http://www.gnu.org/licenses/>.
 
 VER_MAJOR = '2023.07'
-VER_MINOR = '43'
+VER_MINOR = '44'
 REVISION = 'Alpha'
 VERSION_INFO = (VER_MAJOR, VER_MINOR, REVISION)
 VERSION = '.'.join(str(c) for c in VERSION_INFO)
@@ -34,8 +34,6 @@ import functions, webbrowser, pyamdgpuinfo, psutil, threading
 import amd as AMD
 import nvidia as NVIDIA
 import system as SYSTEM
-
-from time import sleep
 
 from kivy.config import Config
 Config.set('graphics', 'width', '1024')

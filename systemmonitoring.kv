@@ -9,14 +9,14 @@
                 rgba: 1, 1, 1, 1
             Line:
                 width: 1.5
-                points: ((root.width / 3), 0, (root.width / 3), root.height)
+                points: (250, 0, 250, root.height)
         FloatLayout:
             canvas:
                 Color:
-                    rgba: 0.15, 0.15, 0.15, 1
+                    rgba: 0.1, 0.1, 0.1, 1
                 Rectangle:
-                    pos: (root.width / 3), 0
-                    size: ((root.width / 3) * 2), root.height
+                    pos: (252), 0
+                    size: ((root.width - 250) * 2), root.height
             ScreenManager:
                 id: sm
                 size_hint_y: 1
@@ -29,14 +29,15 @@
                     rgba: 0.15, 0.15, 0.15, 1
                 Rectangle:
                     pos: self.x, self.y
-                    size: root.width / 3, root.height
+                    size: 250, root.height
             Button:
                 id: btn_resources
                 text: 'Moniteur Ressources'
                 font_size: 20
                 background_color: 0, 0.55, 0.85, 1
-                size_hint: 1/3, 1/10
-                pos_hint: {'x': 0, 'y': 0.9}
+                size: 250, 50
+                size_hint: None, None
+                pos: 0, root.height - 50
                 on_press:
                     sm.transition = SlideTransition()
                     sm.current = 'monitoring_screen'
@@ -45,8 +46,9 @@
                 text: 'Options'
                 font_size: 20
                 background_color: 0.45, 0.45, 0.45, 1
-                size_hint: 1/3, 1/10
-                pos_hint: {'x': 0, 'y': 0.8}
+                size: 250, 50
+                size_hint: None, None
+                pos: 0, root.height - 100
                 on_press:
                     sm.transition = SlideTransition()
                     sm.current = 'options_screen'
@@ -55,8 +57,9 @@
                 text: "A Propos"
                 font_size: 20
                 background_color: 0.45, 0.45, 0.45, 1
-                size_hint: 1/3, 1/10
-                pos_hint: {'x': 0, 'y': 0.7}
+                size: 250, 50
+                size_hint: None, None
+                pos: 0, root.height - 150
                 on_press:
                     sm.transition = SlideTransition()
                     sm.current = 'about_screen'
@@ -67,8 +70,9 @@
     on_pre_leave: app.root.ids.btn_resources.background_color = [0.45, 0.45, 0.45, 1]; root.on_stop()
 
     ScrollView:
-        size_hint: 2/3, 1
-        pos_hint: {'x': 1/3, 'y': 0}
+        size: root.width - 252, root.height
+        size_hint: None, None
+        pos: 252, 0
         do_scroll_x: False
         do_scroll_y: True
         bar_width: 5
