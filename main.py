@@ -16,7 +16,7 @@
 # along with this software. If not, see <http://www.gnu.org/licenses/>.
 
 VER_MAJOR = '2023.07'
-VER_MINOR = '45'
+VER_MINOR = '46'
 REVISION = 'Alpha'
 VERSION_INFO = (VER_MAJOR, VER_MINOR, REVISION)
 VERSION = '.'.join(str(c) for c in VERSION_INFO)
@@ -64,8 +64,8 @@ class MonitoringScreen(Screen):
             self.tSent = psutil.net_io_counters().bytes_sent - self.dSent
             self.tFRecv, self.tFRUnit = self.NET.formatBytes(self.tRecv)
             self.tFSent, self.tFSUnit = self.NET.formatBytes(self.tSent)
-            self.ids.net_receiving.text = str(self.tFRecv) + ' ' + self.tFRUnit
-            self.ids.net_sending.text = str(self.tFSent) + ' ' + self.tFSUnit
+            self.ids.net_receiving.text = str(self.tFRecv) + ' ' + self.tFRUnit + '/s'
+            self.ids.net_sending.text = str(self.tFSent) + ' ' + self.tFSUnit + '/s'
                         
     def on_stop(self):
         Clock.unschedule(self.refreshScreen)
