@@ -87,16 +87,16 @@ class network:
         self.f_unit = ''
         if bytes < 1024:
             self.f_bytes = bytes
-            self.f_unit = 'Byte(s)'
+            self.f_unit = 'Byte(s)/s'
         elif bytes >= 1024 and bytes < 1048576:
             self.f_bytes = round(bytes / 1024, 2)
-            self.f_unit = 'KB'
+            self.f_unit = 'KB/s'
         elif bytes >= 1048576 and bytes < 1073741824:
             self.f_bytes = round(bytes / 1048576, 2)
-            self.f_unit = 'MB'
+            self.f_unit = 'MB/s'
         elif bytes > 1073741824:
             self.f_bytes = round(bytes / 1073741824, 2)
-            self.f_unit = 'GB'
+            self.f_unit = 'GB/s'
         return self.f_bytes, self.f_unit
     
     def netCounterCalc(self, bRecv, bSent):
