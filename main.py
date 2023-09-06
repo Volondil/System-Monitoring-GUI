@@ -15,8 +15,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this software. If not, see <http://www.gnu.org/licenses/>.
 
-VER_MAJOR = '2023.07'
-VER_MINOR = '46'
+VER_MAJOR = '2023.08'
+VER_MINOR = '47'
 REVISION = 'Alpha'
 VERSION_INFO = (VER_MAJOR, VER_MINOR, REVISION)
 VERSION = '.'.join(str(c) for c in VERSION_INFO)
