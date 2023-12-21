@@ -43,8 +43,8 @@ class gpu:
         box.mem_usage.text = self.memUsage + ' GB'
         box.clock.text = self.clock + ' Mz'
         box.gtt.text = self.gtt + ' GB'
-        #box.power.text = self.power
-        #box.voltage.text = self.voltage
+        box.power.text = self.power + ' W'
+        box.voltage.text = self.voltage + ' V'
         box.fans_mode.text = self.fansMode
         box.max_clock.text = self.maxClock + ' MHz'
         box.mem_max.text = self.memMax + ' GB'
